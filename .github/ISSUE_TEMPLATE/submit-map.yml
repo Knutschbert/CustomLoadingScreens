@@ -1,0 +1,83 @@
+name: Submit a map
+description: Submit a loading screen for a map
+title: "[Map submission]: "
+labels:
+  - map-submission
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Submit one map per issue.
+
+        Provide the exact in-game map identifier. You can either upload a new loading screen image or reference an existing Unreal texture.
+
+  - type: input
+    id: map_name
+    attributes:
+      label: Map identifier
+      description: The exact in-game map name, e.g. TDM_KP_Quarry
+      placeholder: TDM_KP_Quarry
+    validations:
+      required: true
+
+  - type: input
+    id: display_name
+    attributes:
+      label: Display name
+      description: Optional human-readable name shown to players
+      placeholder: The Quarry
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Map description
+      description: Optional short description of the map
+      placeholder: Describe the map in a sentence or two.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: image_type
+    attributes:
+      label: Image source
+      description: Choose where the loading screen image comes from.
+      options:
+        - New uploaded image
+        - Existing Unreal texture
+    validations:
+      required: true
+
+  - type: textarea
+    id: image_attachment
+    attributes:
+      label: Image attachment
+      description: |
+        For a new image, drag an image into this field or paste it here.
+        Keep the GitHub-generated attachment URL in the issue.
+        Leave blank when using an existing Unreal texture.
+      placeholder: Paste or drag an image here
+    validations:
+      required: false
+
+  - type: input
+    id: texture_path
+    attributes:
+      label: Existing Unreal texture object path
+      description: |
+        Required only when using an existing texture.
+        Use the full object path, including the asset name after the dot.
+        Example: /Game/UI/Materials/Images/LoadingScreen/TO_HIPP.TO_HIPP
+      placeholder: /Game/Path/Asset.Asset
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I have permission to submit this image and it is suitable for inclusion in the project.
+          required: true

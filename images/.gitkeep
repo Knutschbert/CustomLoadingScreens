@@ -1,0 +1,9 @@
+{
+    "map_name": "TO_Hippodrome",
+    "display_name": "Hippodrome",
+    "description": "",
+    "image": {
+        "type": "existing_texture",
+        "path": "/Game/UI/Materials/Images/LoadingScreen/TO_HIPP.TO_HIPP"
+    }
+}
