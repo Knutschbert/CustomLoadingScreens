@@ -123,14 +123,21 @@ def download_image(url, map_name):
     """
     IMAGES_DIR.mkdir(parents=True, exist_ok=True)
 
+    token = os.environ.get("GITHUB_TOKEN")
+    if not token:
+        fail("GITHUB_TOKEN is not available.")
+
     request = urllib.request.Request(
         url,
-        headers={"User-Agent": "KendoPlus-MapSubmission/1.0"},
+        headers={
+            "User-Agent": "KendoPlus-MapSubmission/1.0",
+            "Authorization": f"Bearer {token}",
+            "Accept": "application/octet-stream",
+        },
     )
 
     try:
         with urllib.request.urlopen(request, timeout=30) as response:
-            # Do not follow redirects to arbitrary hosts.
             final_url = response.geturl()
             final_parsed = urlparse(final_url)
             final_host = (final_parsed.hostname or "").lower()

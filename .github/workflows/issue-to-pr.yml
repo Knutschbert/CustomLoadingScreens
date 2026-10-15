@@ -29,6 +29,7 @@ jobs:
       - name: Validate submission and prepare changes
         id: prepare
         env:
+          GITHUB_TOKEN: ${{ github.token }}
           ISSUE_BODY: ${{ github.event.issue.body }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: python .github/scripts/issue_to_pr.py
