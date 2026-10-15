@@ -91,7 +91,13 @@ def find_github_attachment(text):
 
     Arbitrary external URLs are rejected to reduce SSRF risk.
     """
-    urls = re.findall(r"https?://[^\s<>\])]+", text)
+    
+    urls = re.findall(r"""https?://[^\s<>"'\])]+""", text)
+
+    for raw_url in urls:
+        url = raw_url.rstrip(".,\"'")
+        print(f"Found URL: {url}")
+
 
     for raw_url in urls:
         url = raw_url.rstrip(".,")
