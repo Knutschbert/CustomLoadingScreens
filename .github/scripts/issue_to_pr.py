@@ -129,16 +129,10 @@ def download_image(url, map_name):
     """
     IMAGES_DIR.mkdir(parents=True, exist_ok=True)
 
-    token = os.environ.get("GITHUB_TOKEN")
-    if not token:
-        fail("GITHUB_TOKEN is not available.")
-
     request = urllib.request.Request(
         url,
         headers={
             "User-Agent": "KendoPlus-MapSubmission/1.0",
-            "Authorization": f"Bearer {token}",
-            "Accept": "application/octet-stream",
         },
     )
 
@@ -153,6 +147,7 @@ def download_image(url, map_name):
                 or not (
                     final_host in ALLOWED_IMAGE_HOSTS
                     or final_host.endswith(".githubusercontent.com")
+                    or final_host.endswith(".amazonaws.com")
                 )
             ):
                 fail("Image URL redirected to an untrusted host.")
